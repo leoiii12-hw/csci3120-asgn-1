@@ -70,17 +70,17 @@ TOKEN :
 // INTEGER, from javacc/javacc-5.0/examples/Transformer/ToyJava.jjt
 TOKEN :
 {
-    < INTEGER_LITERAL:
-          <DECIMAL_LITERAL> (["l","L"])?
-        | <HEX_LITERAL> (["l","L"])?
-        | <OCTAL_LITERAL> (["l","L"])?
-    >
-  |
-    < #DECIMAL_LITERAL: ["1"-"9"] (["0"-"9"])* >
-  |
-    < #HEX_LITERAL: "0" ["x","X"] (["0"-"9","a"-"f","A"-"F"])+ >
-  |
-    < #OCTAL_LITERAL: "0" (["0"-"7"])* >
+  < INTEGER_LITERAL:
+      <DECIMAL_LITERAL> (["l","L"])?
+    | <HEX_LITERAL> (["l","L"])?
+    | <OCTAL_LITERAL> (["l","L"])?
+  >
+|
+  < #DECIMAL_LITERAL: ["1"-"9"] (["0"-"9"])* >
+|
+  < #HEX_LITERAL: "0" ["x","X"] (["0"-"9","a"-"f","A"-"F"])+ >
+|
+  < #OCTAL_LITERAL: "0" (["0"-"7"])* >
 }
 
 // IDENTIFIER
@@ -132,7 +132,3 @@ TOKEN :
   < UNMATCHED_END_OF_COMMENT: "*/">
 | < INVALID: ~[] >
 }
-
-
-// The following is a simple grammar that will allow you
-// to test the generated lexer.
