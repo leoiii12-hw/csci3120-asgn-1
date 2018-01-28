@@ -3,8 +3,6 @@ import miniJava.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Main {
@@ -24,17 +22,25 @@ public class Main {
             processTokens(input, outputBuilder);
             System.out.print(outputBuilder.toString());
         } catch (TokenMgrError e) {
-            handleCommentUnexpectedEOF(input, e);
+            handleMultiLineCommentUnexpectedEOF(input, e);
         }
     }
 
-    private static void handleCommentUnexpectedEOF(String input, TokenMgrError e) {
-        String message = e.getMessage();
+    private static void handleMultiLineCommentUnexpectedEOF(String input, TokenMgrError e) {
+        if (e.getEof() && e.getState() == MiniJavaParserConstants.IN_MULTI_LINE_COMMENT) {
+            String normalInput = input;
 
-        // TODO: Don't rely on message
-        if (message.contains("<EOF>") && message.contains("/*")) {
-            String normalInput = input.substring(0, input.indexOf(e.getAfter()));
-            int lineNumber = (normalInput.length() - normalInput.replace("\n", "").length());
+            while (true) {
+                normalInput = normalInput.substring(0, normalInput.lastIndexOf("/*"));
+
+                boolean hasNoMoreCommentBlock = !normalInput.contains("*/");
+                boolean isLastUnclosedCommentBlock = normalInput.lastIndexOf("*/") > normalInput.lastIndexOf("/*");
+                if (hasNoMoreCommentBlock || isLastUnclosedCommentBlock) {
+                    break;
+                }
+            }
+
+            int lineNumber = (normalInput.length() - normalInput.replace("\n", "").length()) + 1;
 
             System.out.println("EOF in comment error. The comment begins at line " + lineNumber);
         }

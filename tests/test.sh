@@ -12,7 +12,7 @@ cd ../src
 #    java Main < ../tests/TreeVisitor.java
 
 # Errors Handling 1
-    java Main < ../tests/specs/EOFBeforeTerminationOfMultiLineComment.java
+    java Main < ../tests/specs/MultiLineCommentUnexpectedEOF.java
 
 # Errors Handling 2
     java Main < ../tests/specs/UnmatchedMultiLineComment.java

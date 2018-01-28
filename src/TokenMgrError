@@ -38,7 +38,6 @@ public class TokenMgrError extends Error {
     /**
      * The lexer state.
      */
-    @SuppressWarnings("unused") // not read currently
     private int state;
     /**
      * The current character.
@@ -116,6 +115,14 @@ public class TokenMgrError extends Error {
 
     public String getAfter() {
         return after;
+    }
+
+    public boolean getEof() {
+        return eof;
+    }
+
+    public int getState() {
+        return state;
     }
 
     /***

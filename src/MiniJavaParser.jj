@@ -9,7 +9,11 @@ PARSER_BEGIN(MiniJavaParser)
 PARSER_END(MiniJavaParser)
 
 
-// Insert a specification of a lexical analysis here.
+/**
+ *
+ * Specification of a lexical analysis starts here.
+ *
+ */
 
 SKIP :
 {
@@ -19,13 +23,14 @@ SKIP :
 | "\r"
 }
 
-// COMMENTS, from javacc/javacc-5.0/examples/Transformer/ToyJava.jjt
-SPECIAL_TOKEN :
-{
-  < SINGLE_LINE_COMMENT: "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n") >
-| < FORMAL_COMMENT: "/**" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/" >
-| < MULTI_LINE_COMMENT: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/" >
-}
+// IN_MULTI_LINE_COMMENT and IN_SIGNLE_LINE_COMMENT are adopted from http://www.engr.mun.ca/~theo/JavaCC-FAQ/javacc-faq-moz.htm#tth_sEc3.14
+MORE : { "/*": IN_MULTI_LINE_COMMENT }
+< IN_MULTI_LINE_COMMENT > MORE : { <  ~[] > }
+< IN_MULTI_LINE_COMMENT > SKIP : { "*/": DEFAULT }
+
+MORE : { "//": IN_SINGLE_LINE_COMMENT }
+< IN_SINGLE_LINE_COMMENT > SPECIAL_TOKEN : { < SINGLE_LINE_COMMENT: "\n"|"\r"|"\r\n" > : DEFAULT }
+< IN_SINGLE_LINE_COMMENT > MORE : { < ~[] > }
 
 // KEYWORDS
 TOKEN :
@@ -132,3 +137,9 @@ TOKEN :
   < UNMATCHED_END_OF_COMMENT: "*/">
 | < INVALID: ~[] >
 }
+
+/**
+ *
+ * Specification of a lexical analysis ends here.
+ *
+ */
