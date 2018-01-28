@@ -20,4 +20,4 @@ clean:
 	rm -rf $(JAVACC_OUTDIR) *.class
 
 run:
-	../tests/test.sh
+	../specs/run.sh
