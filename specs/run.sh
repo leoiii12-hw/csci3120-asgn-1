@@ -17,6 +17,5 @@ declare -a specs=(
 
 for i in "${specs[@]}"
 do
-   java Asgn1 < "../specs/$i"
-   # or do whatever with individual element of the array
+   java Asgn1 < "../specs/$i" > "../specs/$i.out"
 done

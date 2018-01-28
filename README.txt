@@ -1,6 +1,5 @@
 .
 ├── README.txt
-├── csci3120-asgn-1.iml
 ├── specs
 │   ├── BinarySearch.java
 │   ├── BinaryTree.java
@@ -23,7 +22,7 @@
 
 
 # Instructions to compile and run my program
-The ``makefile`` is available in the ``src`` directory, assuming you have installed ``bash``.
+The ``makefile`` is available in the ``./src`` directory, assuming you have installed ``bash``.
 
 ## 1. Compile the scanner
 ``
@@ -31,6 +30,7 @@ make
 ``
 
 ## 2. Run all the tests I made for the scanner
+You can see the output files in ``./specs/*.out``.
 ``
 make run
 ``

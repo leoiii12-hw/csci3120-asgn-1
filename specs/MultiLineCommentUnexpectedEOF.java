@@ -8,7 +8,9 @@ class BinarySearch {
 /*
 
  */
-/*
+ /*
+
+ /*
         System.out.println(new BS().Start(20));
     }
 }

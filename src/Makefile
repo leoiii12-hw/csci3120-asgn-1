@@ -16,7 +16,7 @@ $(PARSER): $(JAVACC_FILE)
 	javac $(JAVACC_OUTDIR)/*.java
 
 clean:
-	rm -rf $(JAVACC_OUTDIR) *.class
+	rm -rf $(JAVACC_OUTDIR) *.class ../specs/*.out
 
 run:
 	../specs/run.sh
