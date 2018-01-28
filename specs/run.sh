@@ -13,6 +13,7 @@ declare -a specs=(
     "MultiLineCommentUnexpectedEOF.java"
     "UnmatchedMultiLineComment.java"
     "InvalidCharacter.java"
+    "AmbiguousComment.java"
 )
 
 for i in "${specs[@]}"
