@@ -5,12 +5,9 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 
-public class Main {
+public class Asgn1 {
 
     public static void main(String args[]) throws FileNotFoundException {
-        if (args.length >= 1)
-            System.setIn(new FileInputStream(args[0]));
-
         Scanner sc = new Scanner(System.in);
         StringBuilder inputBuilder = new StringBuilder();
         while (sc.hasNextLine()) inputBuilder.append(sc.nextLine()).append("\n");
