@@ -1,12 +1,12 @@
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MapUtils {
 
-    public static Map<String, Integer> sortMap(Map<String, Integer> unsortMap, final boolean isAscending) {
-        List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
+    public static Map<String, Integer> sortMap(Map<String, Integer> unsortedMap, final boolean isAscending) {
+        List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortedMap.entrySet());
+
+        // Sorting the list based on keys
+        list.sort(Comparator.comparing(Map.Entry::getKey));
 
         // Sorting the list based on values
         list.sort((o1, o2) -> {
